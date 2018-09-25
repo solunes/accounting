@@ -1,0 +1,89 @@
+.solunes-accounting {
+  /* Accounting: Table */
+  /* Accounting: Form */ }
+  .solunes-accounting h1 {
+    font-size: 30px; }
+  .solunes-accounting h3 {
+    font-size: 26px; }
+  .solunes-accounting p {
+    margin-top: 0;
+    margin-bottom: 15px; }
+  .solunes-accounting .order-block {
+    background: #f2f2f2;
+    padding: 30px 40px 45px; }
+  .solunes-accounting .table-bordered-top {
+    border-top: 1px solid #ddd; }
+    .solunes-accounting .table-bordered-top td, .solunes-accounting .table-bordered-top th {
+      border-bottom: 1px solid #ddd; }
+  .solunes-accounting .method-title {
+    margin-top: 30px; }
+  .solunes-accounting .panel-title {
+    font-weight: bold; }
+  .solunes-accounting .payment-method {
+    margin-bottom: 30px;
+    margin-top: 20px; }
+  .solunes-accounting table.table-accounting {
+    margin-bottom: 30px; }
+    .solunes-accounting table.table-accounting td.strong {
+      font-weight: bold; }
+    .solunes-accounting table.table-accounting tr {
+      display: table-row; }
+    .solunes-accounting table.table-accounting th {
+      font-weight: bold;
+      text-align: center;
+      text-transform: uppercase;
+      white-space: nowrap; }
+    .solunes-accounting table.table-accounting td, .solunes-accounting table.table-accounting th {
+      border-bottom: 1px solid #ddd !important;
+      border-top: medium none;
+      padding: 20px 10px;
+      vertical-align: middle;
+      text-align: center; }
+    .solunes-accounting table.table-accounting td input {
+      background: #e5e5e5;
+      border: none;
+      border-radius: 3px;
+      color: #6f6f6f;
+      font-size: 15px;
+      font-weight: 400;
+      height: 40px;
+      padding: 0 5px 0 10px;
+      width: 60px; }
+    .solunes-accounting table.table-accounting .product-thumbnail {
+      width: 80px;
+      padding: 10px; }
+    .solunes-accounting table.table-accounting .product-price {
+      width: 130px; }
+    .solunes-accounting table.table-accounting .product-quantity {
+      width: 180px; }
+    .solunes-accounting table.table-accounting .product-name {
+      width: 270px; }
+    .solunes-accounting table.table-accounting .amount {
+      font-size: 15px;
+      font-weight: 700; }
+  .solunes-accounting .accounting-form {
+    padding: 20px;
+    margin-bottom: 30px;
+    border: 1px solid #e5e5e5; }
+  .solunes-accounting .checkout-form-list {
+    margin-bottom: 30px; }
+  .solunes-accounting input {
+    background: #fff none repeat scroll 0 0;
+    border: 1px solid #e5e5e5;
+    border-radius: 0;
+    height: 42px;
+    width: 100%;
+    padding: 0 0 0 10px; }
+  .solunes-accounting select {
+    width: 100%;
+    background: #eceff8;
+    border: 2px solid #eceff8;
+    height: 45px;
+    padding-left: 10px;
+    box-shadow: none;
+    font-size: 14px;
+    color: #626262; }
+  .solunes-accounting input.btn-site {
+    width: auto;
+    padding-left: 15px;
+    padding-right: 15px; }

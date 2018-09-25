@@ -24,6 +24,7 @@ class MasterSeeder extends Seeder {
         $node_expense = \Solunes\Master\App\Node::create(['name'=>'expense', 'location'=>'accounting', 'folder'=>'accounting']);
         $node_accounts_payable = \Solunes\Master\App\Node::create(['name'=>'accounts-payable', 'table_name'=>'accounts_payable', 'location'=>'accounting', 'folder'=>'accounting']);
         $node_accounts_receivable = \Solunes\Master\App\Node::create(['name'=>'accounts-receivable', 'table_name'=>'accounts_receivable', 'location'=>'accounting', 'folder'=>'accounting']);
+
         // Usuarios
         $admin = \Solunes\Master\App\Role::where('name', 'admin')->first();
         $member = \Solunes\Master\App\Role::where('name', 'member')->first();

@@ -29,6 +29,11 @@ class EventServiceProvider extends ServiceProvider
         // Módulo de Proyectos
         $events->listen('eloquent.creating: Solunes\Accounting\App\BankAccount', '\Solunes\Accounting\App\Listeners\RegisteringBankAccount');
 
+        /*$events->listen('eloquent.creating: Solunes\Accounting\App\PlaceAccountability', '\Solunes\Accounting\App\Listeners\RegisterPlaceAccountability');
+        $events->listen('eloquent.created: Solunes\Accounting\App\PlaceMovement', '\Solunes\Accounting\App\Listeners\RegisterPlaceMovement');
+        $events->listen('eloquent.created: Solunes\Accounting\App\Income', '\Solunes\Accounting\App\Listeners\RegisterIncome');
+        $events->listen('eloquent.created: Solunes\Accounting\App\Expense', '\Solunes\Accounting\App\Listeners\RegisterExpense');*/
+
         parent::boot($events);
     }
 }
