@@ -12,7 +12,7 @@ class NodesAccounting extends Migration
      */
     public function up()
     {
-        // Módulo de Parámetros Contables
+        /* Módulo de Contabilidad */
         Schema::create('taxes', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name')->nullable();
@@ -54,7 +54,6 @@ class NodesAccounting extends Migration
             $table->foreign('currency_id')->references('id')->on('currencies')->onDelete('cascade');
             $table->foreign('account_id')->references('id')->on('accounts')->onDelete('cascade');
         });
-        // Módulo de Contabilidad
         Schema::create('place_accountability', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('parent_id')->unsigned();
@@ -73,7 +72,7 @@ class NodesAccounting extends Migration
             $table->decimal('balance', 10, 2)->nullable();
             $table->decimal('currency_balance', 10, 2)->nullable();
             $table->timestamps();
-            $table->foreign('parent_id')->references('id')->on('places')->onDelete('cascade');
+            $table->foreign('parent_id')->references('id')->on('agencies')->onDelete('cascade');
             $table->foreign('account_id')->references('id')->on('accounts')->onDelete('cascade');
             $table->foreign('currency_id')->references('id')->on('currencies')->onDelete('cascade');
         });
@@ -88,8 +87,8 @@ class NodesAccounting extends Migration
             $table->decimal('amount', 10, 2)->nullable();
             $table->string('reference')->nullable();
             $table->timestamps();
-            $table->foreign('place_from_id')->references('id')->on('places')->onDelete('cascade');
-            $table->foreign('place_to_id')->references('id')->on('places')->onDelete('cascade');
+            $table->foreign('place_from_id')->references('id')->on('agencies')->onDelete('cascade');
+            $table->foreign('place_to_id')->references('id')->on('agencies')->onDelete('cascade');
             $table->foreign('account_from_id')->references('id')->on('accounts')->onDelete('cascade');
             $table->foreign('account_to_id')->references('id')->on('accounts')->onDelete('cascade');
             $table->foreign('currency_id')->references('id')->on('currencies')->onDelete('cascade');
@@ -105,7 +104,7 @@ class NodesAccounting extends Migration
             $table->decimal('amount', 10, 2)->nullable();
             $table->timestamps();
             $table->foreign('account_id')->references('id')->on('accounts')->onDelete('cascade');
-            $table->foreign('place_id')->references('id')->on('places')->onDelete('cascade');
+            $table->foreign('place_id')->references('id')->on('agencies')->onDelete('cascade');
             $table->foreign('currency_id')->references('id')->on('currencies')->onDelete('cascade');
         });
         Schema::create('expenses', function (Blueprint $table) {
@@ -119,7 +118,7 @@ class NodesAccounting extends Migration
             $table->decimal('amount', 10, 2)->nullable();
             $table->timestamps();
             $table->foreign('account_id')->references('id')->on('accounts')->onDelete('cascade');
-            $table->foreign('place_id')->references('id')->on('places')->onDelete('cascade');
+            $table->foreign('place_id')->references('id')->on('agencies')->onDelete('cascade');
             $table->foreign('currency_id')->references('id')->on('currencies')->onDelete('cascade');
         });
         Schema::create('accounts_payable', function (Blueprint $table) {
@@ -134,7 +133,7 @@ class NodesAccounting extends Migration
             $table->decimal('amount', 10, 2)->nullable();
             $table->decimal('amount_paid', 10, 2)->nullable();
             $table->timestamps();
-            $table->foreign('place_id')->references('id')->on('places')->onDelete('cascade');
+            $table->foreign('place_id')->references('id')->on('agencies')->onDelete('cascade');
             $table->foreign('account_id')->references('id')->on('accounts')->onDelete('cascade');
             $table->foreign('currency_id')->references('id')->on('currencies')->onDelete('cascade');
         });
@@ -151,56 +150,10 @@ class NodesAccounting extends Migration
             $table->decimal('amount', 10, 2)->nullable();
             $table->decimal('amount_paid', 10, 2)->nullable();
             $table->timestamps();
-            $table->foreign('place_id')->references('id')->on('places')->onDelete('cascade');
+            $table->foreign('place_id')->references('id')->on('agencies')->onDelete('cascade');
             $table->foreign('account_id')->references('id')->on('accounts')->onDelete('cascade');
             $table->foreign('currency_id')->references('id')->on('currencies')->onDelete('cascade');
         });
-        /* Módulo de Capital */
-        if(config('accounting.partners')){
-            Schema::create('partners', function (Blueprint $table) {
-                $table->increments('id');
-                $table->string('name')->nullable();
-                $table->integer('account_id')->unsigned();
-                $table->decimal('return_percentage', 10, 2)->nullable()->default(10);
-                $table->decimal('capital', 10, 2)->nullable()->default(0);
-                $table->timestamps();
-                $table->foreign('account_id')->references('id')->on('accounts')->onDelete('cascade');
-            });
-            /*Schema::create('partner_details', function (Blueprint $table) {
-                $table->increments('id');
-                $table->integer('parent_id')->unsigned();
-                $table->enum('status', ['holding','finished'])->nullable()->default('holding');
-                $table->integer('currency_id')->unsigned();
-                $table->integer('product_id')->unsigned();
-                $table->integer('partner_transport_id')->nullable();
-                $table->integer('sale_item_id')->nullable();
-                $table->integer('initial_quantity')->nullable();
-                $table->integer('quantity')->nullable();
-                $table->decimal('investment', 10, 2)->nullable()->default(0);
-                $table->decimal('transport_investment', 10, 2)->nullable()->default(0);
-                $table->decimal('return', 10, 2)->nullable()->default(0);
-                $table->decimal('transport_return', 10, 2)->nullable()->default(0);
-                $table->decimal('profit', 10, 2)->nullable()->default(0);
-                $table->boolean('paid')->nullable()->default(0);
-                $table->timestamps();
-                $table->foreign('parent_id')->references('id')->on('partners')->onDelete('cascade');
-                $table->foreign('currency_id')->references('id')->on('currencies')->onDelete('cascade');
-                $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
-            });*/
-            Schema::create('partner_movements', function (Blueprint $table) {
-                $table->increments('id');
-                $table->integer('parent_id')->unsigned();
-                $table->integer('place_id')->unsigned();
-                $table->string('name')->nullable();
-                $table->enum('type', ['move_in','move_out'])->nullable();
-                $table->integer('currency_id')->unsigned();
-                $table->decimal('amount', 10, 2)->nullable()->default(0);
-                $table->timestamps();
-                $table->foreign('parent_id')->references('id')->on('partners')->onDelete('cascade');
-                $table->foreign('place_id')->references('id')->on('places')->onDelete('cascade');
-                $table->foreign('currency_id')->references('id')->on('currencies')->onDelete('cascade');
-            });
-        }
     }
 
     /**
@@ -210,21 +163,16 @@ class NodesAccounting extends Migration
      */
     public function down()
     {
-        // Módulo de Capital
-        Schema::dropIfExists('partner_movements');
-        Schema::dropIfExists('partner_details');
-        Schema::dropIfExists('partners');
-        // Módulo de Contabilidad
         Schema::dropIfExists('accounts_payable');
         Schema::dropIfExists('accounts_receivable');
         Schema::dropIfExists('expenses');
         Schema::dropIfExists('incomes');
         Schema::dropIfExists('place_movements');
         Schema::dropIfExists('place_accountability');
-        // Módulo de Parámetros Contables
         Schema::dropIfExists('bank_accounts');
         Schema::dropIfExists('accounts');
         Schema::dropIfExists('concepts');
         Schema::dropIfExists('transaction_codes');
         Schema::dropIfExists('taxes');
+    }
 }

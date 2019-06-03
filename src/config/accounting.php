@@ -4,7 +4,6 @@ return [
 
 	// GENERAL
 	'after_seed' => true,
-	'partners' => false,
 
 	// CUSTOM FORMS
     'item_get_after_vars' => ['purchase','product'], // array de nodos: 'node'

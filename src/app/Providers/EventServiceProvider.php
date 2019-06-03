@@ -26,17 +26,14 @@ class EventServiceProvider extends ServiceProvider
     public function boot(DispatcherContract $events)
     {
         
-        // Módulo de Cuentas
+        // Módulo de Proyectos
         $events->listen('eloquent.creating: Solunes\Accounting\App\BankAccount', '\Solunes\Accounting\App\Listeners\RegisteringBankAccount');
-        $events->listen('eloquent.creating: Solunes\Accounting\App\PlaceAccountability', '\Solunes\Accounting\App\Listeners\RegisterPlaceAccountability');
+
+        /*$events->listen('eloquent.creating: Solunes\Accounting\App\PlaceAccountability', '\Solunes\Accounting\App\Listeners\RegisterPlaceAccountability');
         $events->listen('eloquent.created: Solunes\Accounting\App\PlaceMovement', '\Solunes\Accounting\App\Listeners\RegisterPlaceMovement');
         $events->listen('eloquent.created: Solunes\Accounting\App\Income', '\Solunes\Accounting\App\Listeners\RegisterIncome');
-        $events->listen('eloquent.created: Solunes\Accounting\App\Expense', '\Solunes\Accounting\App\Listeners\RegisterExpense');
-        // Módulo de Capital
-        $events->listen('eloquent.creating: Solunes\Accounting\App\Partner', '\Solunes\Accounting\App\Listeners\RegisteringPartner');
-        $events->listen('eloquent.created: Solunes\Accounting\App\PartnerMovement', '\Solunes\Accounting\App\Listeners\RegisterPartnerMovement');
-        $events->listen('eloquent.created: Solunes\Accounting\App\PartnerDetail', '\Solunes\Accounting\App\Listeners\RegisterPartnerDetail');
-        $events->listen('eloquent.saving: Solunes\Accounting\App\PartnerDetail', '\Solunes\Accounting\App\Listeners\SavePartnerDetail');
+        $events->listen('eloquent.created: Solunes\Accounting\App\Expense', '\Solunes\Accounting\App\Listeners\RegisterExpense');*/
+
         parent::boot($events);
     }
 }
